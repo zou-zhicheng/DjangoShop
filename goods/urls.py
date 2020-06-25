@@ -18,13 +18,13 @@ from django.urls import path
 from django.urls import include
 from django.views.static import serve
 from DjangoShop.settings import MEDIA_ROOT
-from rest_framework.documentation import include_docs_urls
+from goods.view_base import GoodsListView
+from goods.view_base import GoodsListView2
+from goods.views import GoodsListView
+
 
 urlpatterns = [
-    path('goods/', include('goods.urls')),
-    path('admin/', admin.site.urls),
-    path('media/<path:path>', serve, {'document_root':MEDIA_ROOT}),
-    # drf文档，title自定义
-    path('docs', include_docs_urls(title='仙剑奇侠传')),
-    path('api-auth/', include('rest_framework.urls')),
+    path('list_base/', GoodsListView.as_view(), name='goods_list_base'),
+    path('list_base2/', GoodsListView2.as_view(), name='goods_list_base2'),
+    path('list/', GoodsListView.as_view(), name='list')
 ]
