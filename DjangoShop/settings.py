@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# 重载系统的用户，让UserProfile生效
+AUTH_USER_MODEL = 'users.UserProfile'
 
 # Application definition
 
@@ -94,7 +96,7 @@ DATABASES = {
         'PORT': '3306',
         # 这里引擎用innodb（默认myisam）
         # 因为后面第三方登录时，要求引擎为INNODB
-        # "OPTIONS":{"init_command":"SET default_storage_engine=INNODB;"}
+        # "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
     }
 }
 
@@ -135,3 +137,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
